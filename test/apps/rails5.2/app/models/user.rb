@@ -23,4 +23,12 @@ class User < ActiveRecord::Base
 
     User.joins("INNER JOIN <complex join involving custom SQL and #{foreign_key} interpolation>")
   end
+
+  def polymorphic_name_joins
+    MediaFile.joins(
+      "JOIN #{table_name}
+        ON media_files.parent_type = '#{polymorphic_name}'
+        AND media_files.parent_id = #{table_name}.id"
+    )
+  end
 end
