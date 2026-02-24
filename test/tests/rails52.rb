@@ -103,6 +103,19 @@ class Rails52Tests < Minitest::Test
       :user_input => s(:call, s(:call, nil, :reflect_on_association, s(:lit, :foos)), :foreign_key)
   end
 
+  def test_sql_injection_polymorphic_name
+    assert_no_warning :type => :warning,
+      :warning_code => 0,
+      :fingerprint => "76aa7211f677f4341babbadbed9d1c64c1cf3073303e94d565fe6cdb0124e4dc",
+      :warning_type => "SQL Injection",
+      :line => 30,
+      :message => /^Possible\ SQL\ injection/,
+      :confidence => 2,
+      :relative_path => "app/models/user.rb",
+      :code => s(:call, s(:const, :MediaFile), :joins, s(:dstr, "JOIN ", s(:evstr, s(:call, nil, :table_name)), s(:str, "\n        ON media_files.parent_type = '"), s(:evstr, s(:call, nil, :polymorphic_name)), s(:str, "'\n        AND media_files.parent_id = "), s(:evstr, s(:call, nil, :table_name)), s(:str, ".id"))),
+      :user_input => s(:call, nil, :polymorphic_name)
+  end
+
   def test_sql_injection_user_input
     assert_warning :type => :warning,
       :warning_code => 0,
