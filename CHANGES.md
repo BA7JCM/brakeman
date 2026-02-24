@@ -1,3 +1,10 @@
+# Unreleased
+
+* Fix `polymorphic_name` SQLi false positive (Fredrico Franco)
+* Fix logger behavior when loading config files
+* Handle application names with module prefixes
+* Add release age option for `--ensure-latest`
+
 # 8.0.2 - 2026-02-03
 
 * Reline console control should use stderr
