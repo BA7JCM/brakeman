@@ -1,4 +1,4 @@
-# Unreleased
+# 8.0.3 - 2026-02-26
 
 * Fix `polymorphic_name` SQLi false positive (Fredrico Franco)
 * Fix logger behavior when loading config files
