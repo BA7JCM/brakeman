@@ -1,3 +1,7 @@
+# 8.0.4 - 2026-02-26
+
+* Load 'date' library for `--ensure-latest`
+
 # 8.0.3 - 2026-02-26
 
 * Fix `polymorphic_name` SQLi false positive (Fredrico Franco)
