@@ -427,7 +427,7 @@ module Brakeman
     release_date = latest.date.to_date
     latest_version = latest.version.to_s
 
-    if (Date.today - latest.date.to_date) >= days_old
+    if (Date.today - release_date) >= days_old
       if current != latest_version
         return "Brakeman #{current} is not the latest version #{latest_version}"
       else
