@@ -1,3 +1,10 @@
+# 8.0.6 - 2026-08-13
+
+* Fix EOL date for Rails 8.0 (yeaseul-kim)
+* Add EOL dates for Rails 8.1 and Ruby 4.0
+* Fix command injection false positives (Jacob Evelyn)
+* Fix unused variable warning (viralpraxis)
+
 # 8.0.5 - 2026-06-12
 
 * Add `quote_schema_name` to safe quote method list (Zsolt Kozaroczy)
