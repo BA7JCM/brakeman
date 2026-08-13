@@ -91,9 +91,11 @@ class BrakemanOptionsTest < Minitest::Test
     options = setup_options_from_input("--ensure-latest", "10")
     assert_equal 10, options[:ensure_latest]
 
-    assert_raises OptionParser::InvalidArgument do
+    err = assert_raises OptionParser::InvalidArgument do
       setup_options_from_input("--ensure-latest", "16")
     end
+
+    assert_match /1-15 days/, err.message
 
     assert_raises OptionParser::InvalidArgument do
       setup_options_from_input("--ensure-latest", "0")

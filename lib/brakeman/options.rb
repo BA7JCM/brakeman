@@ -63,9 +63,9 @@ module Brakeman::Options
           options[:exit_on_error] = exit_on_error
         end
 
-        opts.on "--ensure-latest [DAYS]", Integer, "Fail when Brakeman is outdated. Optionally set minimum age in days." do |days|
+        opts.on "--ensure-latest [DAYS]", Integer, "Fail when Brakeman is outdated. Optionally set minimum age in days (1-15)." do |days|
           if days and not (1..15).include? days
-            raise OptionParser::InvalidArgument
+            raise OptionParser::InvalidArgument, "Minimum age must be 1-15 days."
           end
 
           options[:ensure_latest] = days || true
