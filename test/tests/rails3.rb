@@ -13,7 +13,7 @@ class Rails3Tests < Minitest::Test
   def expected
     @expected ||= {
       :controller => 1,
-      :model => 9,
+      :model => 10,
       :template => 41,
       :generic => 79
     }
@@ -524,6 +524,17 @@ class Rails3Tests < Minitest::Test
       :file => /account\.rb/,
       :fingerprint => "ab6b3d8f3d65899a3ff9ae15db6a50942c4c9e2a0b5d202fdff4eb28d469d2c9",
       :code => s(:arglist, s(:lit, :something), s(:hash, s(:lit, :with), s(:lit, /[a-zA-Z]\z/)))
+  end
+
+  def test_format_validation_with_active_model_validations
+    assert_warning :type => :model,
+      :warning_type => "Format Validation",
+      :line => 7,
+      :message => /^Insufficient validation for `value` using/,
+      :confidence => 0,
+      :file => /one_time_password\.rb/,
+      :fingerprint => "0eb80abb64849c60a2684fce9f9105f7d9ab757abca2f53c116f3b97883e3da2",
+      :code => s(:arglist, s(:lit, :value), s(:hash, s(:lit, :with), s(:lit, /[0-9]/)))
   end
 
   def test_allowable_validation

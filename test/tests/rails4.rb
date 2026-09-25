@@ -19,7 +19,7 @@ class Rails4Tests < Minitest::Test
   def expected
     @expected ||= {
       :controller => 0,
-      :model => 4,
+      :model => 5,
       :template => 8,
       :generic => 92
     }
@@ -1241,6 +1241,17 @@ class Rails4Tests < Minitest::Test
       :warning_type => "Format Validation",
       :relative_path => "app/models/phone.rb",
       :line => 12
+  end
+
+  def test_format_validation_with_active_model_model
+    assert_warning :type => :model,
+      :warning_type => "Format Validation",
+      :line => 7,
+      :message => /^Insufficient validation for `value` using/,
+      :confidence => 0,
+      :file => /one_time_password\.rb/,
+      :fingerprint => "29d11fe2dc7bbf0ab943abd3e905e042084eb7c6af9763968387f45381294788",
+      :code => s(:arglist, s(:lit, :value), s(:hash, s(:lit, :format), s(:lit, /[0-9]/)))
   end
 
   def test_additional_libs_option
